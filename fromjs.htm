@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Order</title>
+	<style>
+		table,th,td{
+			border: 1px solid grey;
+			border-collapse: collapse;
+			background-color: skyblue;	
+		}
+	</style>
+	<script>
+		function order(){
+			var doll=document.getElementById("doll").value;
+			var prime=document.getElementById("prime").value;
+			var spongebob = document.getElementById("spongebob").value;
+			if(doll==="" || prime==="" || spongebob===""){
+				alert("All products are mandatory to be bought")
+			}
+			else{
+				var list=[];
+				 list.push(['Barbie Doll', 500, doll, (500 * doll)]);
+				 list.push(['Optimus Prime', 5200, prime, (5200 * prime)]);
+				 list.push(['spongebob', 100, spongebob, (100 * spongebob)]);
+				 
+				function createTable() {
+
+                var myWindow = window.open("", "New Window", `width=400,height=400`);
+                myWindow.document.write("<h2>Invoice</h2>");
+                var table = myWindow.document.createElement('table');
+
+
+                table.setAttribute('border', '1');
+                table.setAttribute('cellspacing','4');
+                table.setAttribute('bgcolor','skyblue');
+
+                var row=myWindow.document.createElement('tr');
+                var tData1 = myWindow.document.createElement('td');
+                tData1.textContent = 'Product';
+                var tData2 = myWindow.document.createElement('td');
+                tData2.textContent = 'Price';
+                var tData3 = myWindow.document.createElement('td');
+                tData3.textContent = 'Quantity';
+                var tData4 = myWindow.document.createElement('td');
+                tData4.textContent = 'Total';
+                row.appendChild(tData1);
+                row.appendChild(tData2);
+                row.appendChild(tData3);
+                row.appendChild(tData4);
+                table.appendChild(row);
+
+                for (let i = 0; i < list.length; i++) {
+
+                    var tRow = myWindow.document.createElement('tr');
+
+                    for (let j = 0; j < list[i].length; j++) {
+
+                        var tData = myWindow.document.createElement('td');
+
+
+                        tData.textContent = list[i][j];
+
+
+                        tRow.appendChild(tData);
+                    }
+
+                    table.appendChild(tRow);
+                }
+
+                myWindow.document.body.appendChild(table);
+                
+            }
+            if(list.length>0){
+                createTable();
+            }
+            else{
+                alert("no item selected");
+            }
+           
+				/*var newWindow = window.open("Order Invoice");
+				newWindow.document.write("");
+				var table=newWindow.document.createElement("table");
+				var row=newWindow.document.createElement('tr');
+                var tData1 = newWindow.document.createElement('td');
+                tData1.textContent = 'Product';
+                var tData2 = newWindow.document.createElement('td');
+                tData2.textContent = 'Price';
+                var tData3 = newWindow.document.createElement('td');
+                tData3.textContent = 'Quantity';
+                var tData4 = newWindow.document.createElement('td');
+                tData4.textContent = 'Total';
+                row.appendChild(tData1);
+                row.appendChild(tData2);
+                row.appendChild(tData3);
+                row.appendChild(tData4);
+                table.appendChild(row);
+
+				for(var i=0;i<list.length;i++){
+					var trow=newWindow.document.createElement('tr');
+					for(var j=0;j<list[i].length;j++){
+						var tdd=newWindow.document.createElement('td');
+						tdd.textContext=list[i][j];
+						trow.appendChild(tdd);
+					}
+					table.appendChild(trow);
+					
+				}
+				console.log(table);
+				newWindow.document.body.appendChild(table);
+				console.log(table);
+			}*/
+		}
+	}
+	</script>
+</head>
+<body>
+	<h1>Products</h1>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Qty</th>
+		</tr>
+		<tr>
+			<td>Barbie Doll</td>
+			<td>Gorgeous</td>
+			<td>500</td>
+			<td><input type="number" min="1" id="doll"></td>
+		</tr>
+		<tr>
+			<td>Transformer Optimus prime</td>
+			<td>Beast</td>
+			<td>5200</td>
+			<td><input type="number" min="1" id="prime"></td>
+		</tr>
+		<tr>
+			<td>Spongebob</td>
+			<td>Hakuna Matata</td>
+			<td>100</td>
+			<td><input type="number" min="1" id="spongebob"></td>
+		</tr>
+
+	</table>
+	<input type="submit" value="order" id="order" onclick="order();" >
+</body>
+</html>
